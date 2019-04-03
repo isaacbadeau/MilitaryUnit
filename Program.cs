@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MilitaryUnit.Domain.Soldiers;
+using MilitaryUnit.Domain.Weapons;
+using MilitaryUnit.Domain.Vehicles;
+using MilitaryUnit.Domain;
 
 namespace MilitaryUnit
 {
@@ -10,12 +14,17 @@ namespace MilitaryUnit
     {
         static void Main(string[] args)
         {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
+            Random rndDmg = new Random();
+            List<Vehicle> gameVehicles = new List<Vehicle> { new Tank(), new TranspoTruck(), new Helicopter() };
+            List<Weapon> gameWeapons = new List<Weapon> { new SubMachineGun(), new SAW(), new SniperRifle() };
+            List<Soldier> gameSoldiers = new List<Soldier> { new FootSoldier(), new HeavySoldier(), new Sniper() };
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+            gameVehicles[2].loadTroops(8);
+            gameVehicles[2].disembarkTroops(8);
+            gameSoldiers[0].Move(3, 5);
+            gameSoldiers[0].TakesDamage(rndDmg.Next(0,20));
+            gameWeapons[0].FireWeapon();
+
         }
     }
 }
